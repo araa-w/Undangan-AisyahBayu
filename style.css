@@ -51,7 +51,7 @@ body {
     left: 0;
     width: 100%;
     height: 100vh;
-    background: url('images/cover-bg.png') center/cover;
+    background: url('images/cover-polos.png') center/cover;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -206,7 +206,7 @@ body.opened .sticky-nav {
     width: 100%;
     height: 100vh; /* Tinggi selayar penuh */
     /* GANTI 'images/foto-mempelai.jpg' dengan foto prewed kamu */
-    background: url('images/cover-bg.png') center/cover no-repeat; 
+    background: url('images/cover-polos.png') center/cover no-repeat; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -310,46 +310,124 @@ section {
     padding: 1rem 1.5rem 5rem 1.5rem;
 }
 
-/* --- DRESSCODE SECTION --- */
-#dresscode {
-    min-height: auto;
-    height: auto;
-    padding: 1rem 1.5rem 4rem 1.5rem !important; /* Padding bawah agak besar buat bunga */
+/* Variabel Warna & Font (Sesuaikan nilai hex-nya dengan CSS kamu) */
+:root {
+  --adab-bg:  #f2ece0;        /* Warna krem lembut */
+  --adab-card-bg: #ffffff;   /* Putih bersih */
+  --adab-primary: #2c4a3e;   /* Hijau tua/sage gelap */
+  --adab-text: #4a4a4a;      /* Abu-abu tua untuk teks bacaan */
+  --adab-accent: #d4a373;    /* Warna emas/aksen lembut */
+  --adab-font-serif: "Bembo", Georgia, serif;
+  --adab-font-sans: system-ui, -apple-system, sans-serif;
 }
 
-.dresscode-palette {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    margin-top: 2rem;
+.adab-section {
+  background-color: var(--adab-bg);
+  padding: 60px 20px;
 }
 
-.color-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
+.adab-container {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
 }
 
-.color-circle {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15); /* Bayangan biar timbul */
-    border: 3px solid white; /* Border putih biar rapi */
-    transition: transform 0.3s ease;
+.adab-title {
+  font-family: var(--adab-font-serif);
+  font-size: 2rem;
+  color: var(--adab-primary);
+  margin-bottom: 8px;
+  font-weight: 600;
 }
 
-.color-circle:hover {
-    transform: scale(1.1); /* Efek membesar saat disentuh */
+.adab-subtitle {
+  font-family: var(--adab-font-sans);
+  font-size: 0.95rem;
+  color: var(--adab-text);
+  margin-bottom: 40px;
+  opacity: 0.85;
 }
 
-.color-item p {
-    font-size: 0.7rem !important;
-    font-weight: 550;
-    color: black; /* Warna teks hijau tema */
-    font-family: 'Montserrat', sans-serif;
+.adab-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.adab-card {
+  background-color: var(--adab-card-bg);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.adab-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+.adab-icon {
+  background-color: rgba(44, 74, 62, 0.08); /* Transparansi warna primary */
+  color: var(--adab-primary);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.adab-card h3 {
+  font-family: var(--adab-font-serif);
+  font-size: 1.2rem;
+  color: var(--adab-primary);
+  margin-bottom: 10px;
+}
+
+.adab-card p {
+  font-family: var(--adab-font-serif);
+  font-size: 0.875rem;
+  color: var(--adab-text);
+  line-height: 1.5;
+  margin: 1;
+}
+
+/* Khusus Teks Arab & Transliterasi di Card 4 */
+.arabic-text {
+  font-family: "Amiri", "Traditional Arabic", serif;
+  font-size: 1.25rem;
+  direction: rtl;
+  color: var(--adab-primary);
+  margin-bottom: 8px !important;
+  line-height: 1.8;
+}
+
+.transliteration {
+  font-size: 0.8rem !important;
+  /* font-style: italic; */
+  opacity: 0.8;
+}
+
+/* Responsive Layout untuk Layar HP */
+@media (max-width: 640px) {
+  .adab-grid {
+    grid-template-columns: 1fr; /* Berubah jadi 1 kolom di layar kecil */
+    gap: 16px;
+  }
+
+  .adab-section {
+    padding: 40px 16px;
+  }
+  
+  .adab-title {
+    font-size: 1.6rem;
+  }
 }
 
 /* SECTION BACKGROUNDS */
@@ -364,7 +442,8 @@ section {
 
 div[style*="url('images/bunga"] {
     /* Turunkan saturasi 20% dan naikkan kecerahan 10% agar kesan pastel */
-    filter: saturate(0.75) brightness(1.1) contrast(0.9);
+    /* filter: saturate(0.75) brightness(1.1) contrast(0.9); */
+    pointer-events: none;
 }
 
 .sticky-nav .nav-icon:hover, 
