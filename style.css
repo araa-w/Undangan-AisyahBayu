@@ -284,7 +284,7 @@ section {
 }
 
 
-#gift{
+#timeline{
     min-height: auto;
     height: auto;
     padding: 7rem 1.5rem 11rem 1.5rem;
@@ -341,7 +341,7 @@ section {
 }
 
 .adab-subtitle {
-  font-family: var(--adab-font-sans);
+  font-family: var(--adab-font-serif);
   font-size: 0.95rem;
   color: var(--adab-text);
   margin-bottom: 40px;
@@ -778,51 +778,87 @@ h2 {
 }
 
 
-/* GIFT CARDS */
-.gift-card {
+/* --- TIMELINE TAARUF & KHITBAH --- */
+.timeline-container {
+    position: relative;
+    padding-left: 25px;
+    border-left: 2px dashed rgba(255, 255, 255, 0.4);
+    margin: 0 auto 2rem auto;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Titik poin di garis */
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -32px; 
+    top: 0;
+    width: 12px;
+    height: 12px;
+    background: #FFF8E7; /* Warna cream */
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(255, 248, 231, 0.3);
+}
+
+.timeline-date {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #FFF8E7;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+}
+
+.timeline-content {
     background: #FFF8E7;
     padding: 1.5rem;
     border-radius: 0.5rem;
-    margin-bottom: 1rem;
-    
-    /* TAMBAHAN BARU: Flexbox */
-    display: flex;
-    justify-content: space-between; /* Jarak maksimal antara teks dan tombol */
-    align-items: center; /* Posisi vertikal di tengah */
-    gap: 1rem; /* Jarak aman agar teks tidak menabrak tombol */
+    color: #7E7C53;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-/* Pastikan teks tidak terlalu lebar sampai menutupi tombol */
-.gift-text {
-    flex: 1; /* Mengambil sisa ruang yang ada */
-}
-
-.gift-card h4 {
+.timeline-content h4 {
+    font-family: 'Bembo', 'Times New Roman', serif;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
     font-weight: 600;
-    margin-bottom: 0.25rem; /* Sedikit dirapatkan */
-    font-size: 0.775rem; /* Opsional: sesuaikan ukuran font judul */
     color: #7E7C53;
 }
 
-.gift-card p {
+.timeline-content p {
+    font-family: 'Montserrat', sans-serif;
     font-size: 0.85rem;
-    margin-bottom: 0; /* Hapus margin bawah karena sudah di tengah */
-    line-height: 1.4;
-    color: #7E7C53;
+    line-height: 1.5;
+    margin-bottom: 0;
 }
 
-.btn-copy {
-    background: #7E7C53;
-    color: white;
-    /* Ubah padding agar tombol lebih compact/kecil */
-    padding: 0.5rem 1rem; 
-    border: none;
-    border-radius: 2rem;
-    cursor: pointer;
-    font-size: 0.75rem; /* Font tombol diperkecil sedikit */
-    white-space: nowrap; /* Mencegah teks tombol turun baris */
-    flex-shrink: 0; /* Mencegah tombol gepeng jika teks alamat panjang */
-    height: fit-content;
+/* Responsif untuk Timeline di Mobile */
+@media screen and (max-width: 780px) {
+    .timeline-container {
+        padding-left: 20px;
+    }
+    .timeline-item::before {
+        left: -27px;
+    }
+    .timeline-content {
+        padding: 1.2rem !important;
+    }
+    .timeline-date {
+        font-size: 1rem !important;
+    }
+    .timeline-content h4 {
+        font-size: 1rem !important;
+    }
+    .timeline-content p {
+        font-size: 0.75rem !important;
+    }
 }
 
 /* FORM */
@@ -1275,7 +1311,7 @@ h2 {
     }
 
     /* 1. PERBAIKAN SECTION AGAR TIDAK SEMPIT */
-    section#gift, section#wishes {
+    section#timeline, section#wishes {
         padding-left: 2rem !important;  /* Kurangi dari 2rem jadi 1rem */
         padding-right: 2rem !important;
     }
