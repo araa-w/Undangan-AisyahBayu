@@ -402,7 +402,7 @@ section {
 /* Khusus Teks Arab & Transliterasi di Card 4 */
 .arabic-text {
   font-family: "Amiri", "Traditional Arabic", serif;
-  font-size: 1.80rem !important; 
+  font-size: 1.25rem !important; 
   direction: rtl;
   /* color: var(--adab-primary); */
   margin-bottom: 8px !important;
