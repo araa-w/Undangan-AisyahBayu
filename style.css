@@ -315,7 +315,7 @@ section {
   --adab-bg:  #f2ece0;        /* Warna krem lembut */
   --adab-card-bg: #ffffff;   /* Putih bersih */
   --adab-primary: #2c4a3e;   /* Hijau tua/sage gelap */
-  --adab-text: #4a4a4a;      /* Abu-abu tua untuk teks bacaan */
+  /* --adab-text: #4a4a4a;      Abu-abu tua untuk teks bacaan */
   --adab-accent: #d4a373;    /* Warna emas/aksen lembut */
   --adab-font-serif: "Bembo", Georgia, serif;
   --adab-font-sans: system-ui, -apple-system, sans-serif;
@@ -341,8 +341,9 @@ section {
 }
 
 .adab-subtitle {
+  line-height: 1.6;
   font-family: var(--adab-font-serif);
-  font-size: 0.95rem;
+  font-size: 0.975rem;
   color: var(--adab-text);
   margin-bottom: 40px;
   opacity: 0.85;
@@ -401,9 +402,9 @@ section {
 /* Khusus Teks Arab & Transliterasi di Card 4 */
 .arabic-text {
   font-family: "Amiri", "Traditional Arabic", serif;
-  font-size: 1.25rem;
+  font-size: 1.80rem !important; 
   direction: rtl;
-  color: var(--adab-primary);
+  /* color: var(--adab-primary); */
   margin-bottom: 8px !important;
   line-height: 1.8;
 }
@@ -450,7 +451,7 @@ div[style*="url('images/bunga"] {
 .btn-submit,
 .btn-copy,
 .btn-page.active {
-    background-color: var(--bg-green) !important;
+    background-color: var(--bg-cream) !important;
 }
 
 /* PAPER RIPPED EFFECT - PERBAIKAN */
@@ -519,7 +520,7 @@ div[style*="url('images/bunga"] {
     pointer-events: none;
 }
 
-#wishes::after {
+#doa-pengantin::after {
     content: '';
     position: absolute;
     bottom: -50px;
@@ -886,7 +887,7 @@ h2 {
 .btn-submit {
     width: 100%;
     background: #264b09;
-    color: white;
+    color: #264b09;
     padding: 0.875rem;
     border: none;
     border-radius: 0.5rem;
@@ -904,6 +905,7 @@ h2 {
 }
 
 .wish-card h4 {
+    color: #264b09;
     font-weight: 600;
     margin-bottom: 0.5rem;
 }

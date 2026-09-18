@@ -39,34 +39,6 @@
         <div class="envelope-flap top-flap"></div>
 
         <div class="envelope-flap bottom-flap"></div>
-        
-        <!-- <div class="hero-content-wrapper relative z-10 flex flex-col items-center justify-center h-full w-full">
-
-            <p class="subtitle font-serif">Undangan Pernikahan</p>
-
-            <div class="couple-img mb-12">
-                <img src="images/nama.png" alt="Sangga & Dhilla">
-            </div>
-
-            <div class="header-date mb-12">
-                <p class="font-serif" style="font-size: 1.2rem; color: var(--bg-green);">
-                    Minggu, 08 Februari 2026
-                </p>
-            </div>
-        
-            <div class="guest-container mb-12">
-                <p class="font-serif" style="font-size: 1.175rem;">Kepada Yth :</p>
-                <p class="font-serif" style="font-size: 1.175rem;">Bpk/Ibu/Saudara/i</p>
-
-                <div class="guest-box">
-                    <p class="guest-name font-serif"  style="font-size: 1.175rem;">Tamu Undangan</p>
-                </div>
-            </div>
-
-            <button id="open-btn" class="btn-open" onclick="openInvitation()"">
-                <i class="fas fa-envelope-open mr-2"></i> Buka Undangan
-            </button>
-        </div> -->
 
         <div class="hero-content-wrapper relative z-10 flex flex-col items-center justify-center">
 
@@ -88,7 +60,7 @@
     </section>
 
     <audio id="bg-music" loop>
-        <source src="audio/lagu-pernikahan.mp3" type="audio/mp3">
+        <!-- <source src="audio/lagu-pernikahan.mp3" type="audio/mp3"> -->
     </audio>
     <div id="music-btn" class="floating-music" onclick="toggleMusic()">
         🎵
@@ -267,52 +239,42 @@
         <section id="dresscode" class="bg-cream">
 
             <div class="adab-container">
-                <h2 class="adab-title" data-aos="fade-up">Adab Menghadiri Walimah</h2>
+                <h2 class="font-serif" data-aos="fade-up">Adab Menghadiri Walimah</h2>
                 <p class="adab-subtitle" data-aos="fade-up" data-aos-delay="100">
                 Tanpa mengurangi rasa hormat, mohon memperhatikan adab berikut <br> demi kenyamanan bersama.
                 </p>
 
                 <div class="adab-grid">
-                <!-- Card 1 -->
-                <div class="adab-card" data-aos="fade-up" data-aos-delay="150">
-                    <div class="adab-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    <!-- Card 1 -->
+                    <div class="adab-card" data-aos="fade-up" data-aos-delay="150">
+                        <div class="adab-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        </div>
+                        <h3>Area Terpisah</h3>
+                        <p>Mohon menempati area tamu ikhwan (laki-laki) dan akhwat (perempuan) yang telah disediakan secara terpisah.</p>
                     </div>
-                    <h3>Area Terpisah</h3>
-                    <p>Mohon menempati area tamu ikhwan (laki-laki) dan akhwat (perempuan) yang telah disediakan secara terpisah.</p>
-                </div>
 
-                <!-- Card 2 -->
-                <div class="adab-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="adab-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    <!-- Card 2 -->
+                    <div class="adab-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="adab-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                        </div>
+                        <h3>Menjaga Jarak</h3>
+                        <p>Kami memohon maaf jika tidak bersalaman fisik dengan tamu yang bukan mahram. Sapaan hangat dan doa dari jauh sangat kami hargai.</p>
                     </div>
-                    <h3>Menjaga Jarak</h3>
-                    <p>Kami memohon maaf jika tidak bersalaman fisik dengan tamu yang bukan mahram. Sapaan hangat dan doa dari jauh sangat kami hargai.</p>
-                </div>
 
-                <!-- Card 3 -->
-                <div class="adab-card" data-aos="fade-up" data-aos-delay="250">
-                    <div class="adab-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+                    <!-- Card 3 -->
+                    <div class="adab-card" data-aos="fade-up" data-aos-delay="250">
+                        <div class="adab-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+                        </div>
+                        <h3>Adab Jamuan</h3>
+                        <p>Tersedia tempat duduk di area walimah. Mohon menikmati hidangan sambil duduk dan menggunakan tangan kanan.</p>
                     </div>
-                    <h3>Adab Jamuan</h3>
-                    <p>Tersedia tempat duduk di area walimah. Mohon menikmati hidangan sambil duduk dan menggunakan tangan kanan.</p>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="adab-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="adab-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-                    </div>
-                    <h3>Doa Keberkahan</h3>
-                    <p class="arabic-text">بَارَكَ اللهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ</p>
-                    <p class="transliteration">"Semoga Allah memberkahimu di waktu lapang maupun sempit, dan mengumpulkan kalian berdua dalam kebaikan."</p>
-                </div>
                 </div>
             </div>
             
-            <div class="paper-ripped-bottom"></div>
+            <!-- <div class="paper-ripped-bottom"></div> -->
 
             <div style="position: absolute;
                         bottom: 440px;
@@ -333,11 +295,11 @@
                 <!-- Ikon kutipan pembuka (opsional, biar manis) -->
                 <div style="font-size: 3rem; color: #e2e0b5; line-height: 1; margin-bottom: -1rem; font-family: serif;">"</div>
                 
-                <p style="font-family: 'Montserrat', sans-serif; font-size: 0.95rem; line-height: 1.8; color: #FFF8E7; font-style: italic; margin-bottom: 1.5rem; padding: 0 1rem;">
-                    Kami tidak dipertemukan saat kami sedang sibuk saling mencari, melainkan disatukan ketika kami sama-sama sedang belajar memperbaiki diri. Sebab kami percaya, ketetapan-Nya tidak pernah datang terlalu cepat atau terlalu lambat. Ia datang di saat yang paling tepat.
+                <p class="font-serif" style=" font-size: 0.95rem; line-height: 1.3; margin-bottom: 1.5rem; padding: 0 1rem;">
+                    "Pernikahan ini bukan cuma tentang dua orang yang saling menemukan, tapi tentang dua jiwa yang menyelaraskan arah. Dari langkah kecil dalam dakwah hingga doa-doa yang selalu tertuju ke Baitul Maqdis, kami memilih berjalan bersama untuk membangun rumah yang menguatkan perjuangan."
                 </p>
                 
-                <p class="font-serif" style="font-weight: bold; font-size: 0.9rem; color: #FFF8E7; letter-spacing: 1px;">
+                <p class="font-serif" style="font-weight: bold; font-size: 0.9rem; letter-spacing: 1px;">
                     — Aisyah & Bayu —
                 </p>
             </div>
@@ -364,8 +326,34 @@
             <div class="paper-ripped-bottom"></div>
         </section>
 
+        <!-- DOA PENGANTIN SECTION -->
+        <section id="doa-pengantin" class="bg-cream flex flex-col justify-center items-center text-center" style="min-height: 40vh; padding: 4rem 1.5rem; position: relative;">
+            <h2  class="font-serif" data-aos="fade-down" >Doa untuk Pengantin</h2>
+            
+            <div data-aos="zoom-in" data-aos-delay="200" style="position: relative; z-index: 10;">
+                <p class="arabic-text">
+                    بَارَكَ اللهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ
+                </p>
+                <p class="font-serif" style=" font-size: 0.95rem; line-height: 1.6;  margin: 0 auto; padding: 0 1rem;">
+                    "Semoga Allah memberkahimu di waktu lapang maupun sempit, dan mengumpulkan kalian berdua dalam kebaikan."
+                </p>
+            </div>
+
+            <!-- Hiasan bunga (opsional biar ngga kosong banget) -->
+             <div style="position: absolute;
+                        bottom: -190px;
+                        right: -200px;
+                        width: 400px;
+                        height: 320px;
+                        background: url('images/bunga1.png') center/contain no-repeat;
+                        z-index: 25;">
+            </div>
+
+            <div class="paper-ripped-bottom"></div> 
+        </section>
+
         <!-- BEST WISHES SECTION -->
-        <section id="wishes" class="bg-cream">
+        <section id="wishes" class="bg-green" style="margin-top: 3rem;">
             
             <h2 class="font-serif" data-aos="fade-down">Doa & Harapan</h2>
             <p class="text-center mb-8 max-w-md font-serif" style="font-size: 0.875rem; margin-top:-1rem; line-height: 1.6; margin-left: auto; margin-right: auto;" data-aos="fade-down" data-aos-delay="200">
@@ -405,11 +393,10 @@
                         z-index: 25;">
             </div>
 
-            <div class="paper-ripped-bottom"></div>
         </section>
 
         <!-- FOOTER -->
-        <section class="bg-cream" id="footer">
+        <section class="bg-green" id="footer">
 
             <div class="footer-couple-img-doodle" style="margin-top: 50px;" data-aos="zoom-in" data-aos-delay="0">
                     <!-- <img src="images/doodle.png" alt="Sangga & Dhilla"> -->
@@ -423,7 +410,7 @@
             <p class="text-center mb-4 font-serif" style="font-size: 0.875rem;"  data-aos="fade-down" data-aos-delay="200">Kami Yang Berbahagia,</p>
 
             <div class="footer-couple-img"  data-aos="fade-down" data-aos-delay="400">
-                <img src="images/name-black.png" alt="Aisyah & Bayu">
+                <img src="images/name.png" alt="Aisyah & Bayu">
             </div>
 
             <div style="position: absolute;
