@@ -133,9 +133,64 @@
         .slide.active { opacity: 1; pointer-events: auto; }
         .slide h4 { margin: 0 0 8px 0; color: var(--text-dark); font-size: 1rem; }
         .slide p { margin: 0; font-size: 0.85rem; font-style: italic; color: #555; line-height: 1.5; }
+
+        /* --- POP-UP NOTIF (TOAST) --- */
+        #toast {
+            position: fixed;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--text-dark);
+            color: var(--bg-cream);
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: top 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 9999;
+        }
+        #toast.show {
+            top: 20px; /* Muncul ke bawah */
+        }
+
+        /* --- SLIDER 3 PESAN BISA DIGESER --- */
+        .slider-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            gap: 15px;
+            margin-top: 30px;
+            padding-bottom: 10px;
+            /* Sembunyikan scrollbar bawaan biar rapi */
+            -ms-overflow-style: none;
+            scrollbar-width: none; 
+        }
+        .slider-container::-webkit-scrollbar { display: none; }
+
+        .slide-group {
+            flex: 0 0 100%;
+            scroll-snap-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .wish-item {
+            background: rgba(131, 130, 102, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: left;
+            border-left: 4px solid var(--bg-green);
+        }
+        .wish-item h4 { margin: 0 0 5px 0; color: var(--text-dark); font-size: 0.95rem; }
+        .wish-item p { margin: 0; font-size: 0.85rem; font-style: italic; color: #555; line-height: 1.4; }
     </style>
 </head>
 <body>
+    <!-- POP-UP NOTIFIKASI -->
+    <div id="toast">Berhasil mengirim ucapan! ✨</div>
 
     <div class="main-wrapper">
         
@@ -159,6 +214,10 @@
                 <button type="submit" id="btnSubmit">Kirim Pesan</button>
             </form>
 
+            <div class="slider-container" id="sliderBox">
+                <p style="width:100%; text-align:center; color:#888;">Memuat ucapan...</p>
+            </div>
+            
             <div class="slideshow-container" id="slideshowBox">
                 <p style="font-size:0.8rem; color:#888; position:absolute; top:50%; left:50%; transform:translate(-50%, -50%);">Memuat ucapan...</p>
             </div>
@@ -169,73 +228,100 @@
     <script>
         // --- JAVASCRIPT ---
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxIt8TDLHoa7AfQTyEyJ4zzRJy-JPPDCXqAuDDEuUDv5AO_OlEaEKqOSsFiiWuE-tVryg/exec'; // <-- GANTI PAKAI LINK APPS SCRIPT!
-        
-        let currentSlide = 0;
-        let slideInterval;
-        
+        const SCRIPT_URL = 'SCRIPT_URL_KAMU_DISINI'; // <-- INGAT GANTI LINKNYA
+        let autoSlide;
+
+        // FUNGSI MUNCULIN NOTIFIKASI
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000); // Hilang otomatis setelah 3 detik
+        }
+
         function loadWishes() {
-            // Tambahin "?sheet=bukutamu" di ujung link biar dia panggil tab BukuTamu
             fetch(SCRIPT_URL + "?sheet=bukutamu")
                 .then(res => res.json())
                 .then(response => {
-                    const data = response.data; // Ambil datanya
-                    const box = document.getElementById('slideshowBox');
-                    box.innerHTML = ''; 
-        
+                    const data = response.data;
+                    const slider = document.getElementById('sliderBox');
+                    slider.innerHTML = ''; 
+
                     if (data.length === 0) {
-                        box.innerHTML = '<p style="color:#888; position:absolute; top:50%; left:50%; transform:translate(-50%, -50%);">Jadilah yang pertama memberi ucapan!</p>';
+                        slider.innerHTML = '<p style="width:100%; text-align:center; color:#888;">Jadilah yang pertama memberi ucapan!</p>';
                         return;
                     }
-        
-                    data.forEach((item, index) => {
-                        let div = document.createElement('div');
-                        div.className = index === 0 ? 'slide active' : 'slide';
-                        div.innerHTML = `<h4>${item.nama}</h4><p>"${item.ucapan}"</p>`;
-                        box.appendChild(div);
-                    });
-        
-                    clearInterval(slideInterval);
-                    if (data.length > 1) {
-                        slideInterval = setInterval(showNextSlide, 4000);
+
+                    // LOGIKA AJAIB: Pecah data jadi grup, 1 grup maksimal isi 3 pesan
+                    for (let i = 0; i < data.length; i += 3) {
+                        let groupData = data.slice(i, i + 3);
+                        let groupDiv = document.createElement('div');
+                        groupDiv.className = 'slide-group';
+
+                        groupData.forEach(item => {
+                            let wishDiv = document.createElement('div');
+                            wishDiv.className = 'wish-item';
+                            wishDiv.innerHTML = `<h4>${item.nama}</h4><p>"${item.ucapan}"</p>`;
+                            groupDiv.appendChild(wishDiv);
+                        });
+
+                        slider.appendChild(groupDiv);
+                    }
+
+                    // Reset auto-slide
+                    clearInterval(autoSlide);
+                    if (data.length > 3) {
+                        startAutoSlide();
                     }
                 })
                 .catch(err => console.log('Error:', err));
         }
-        
-        function showNextSlide() {
-            const slides = document.querySelectorAll('.slide');
-            if (slides.length === 0) return;
-        
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
+
+        function startAutoSlide() {
+            const slider = document.getElementById('sliderBox');
+            autoSlide = setInterval(() => {
+                // Kalau udah sampai ujung kanan, balik ke awal. Kalau belum, geser ke samping.
+                if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 10) {
+                    slider.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    slider.scrollBy({ left: slider.clientWidth, behavior: 'smooth' });
+                }
+            }, 6000); // Jeda 6 detik per slide biar puas bacanya
         }
-        
+
+        // FITUR TAMBAHAN: Kalau layar disentuh/digeser tamu, matikan auto-slide sebentar
+        document.getElementById('sliderBox').addEventListener('touchstart', () => clearInterval(autoSlide));
+        document.getElementById('sliderBox').addEventListener('touchend', () => {
+            setTimeout(startAutoSlide, 4000); 
+        });
+
         document.getElementById('wishForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const btn = document.getElementById('btnSubmit');
             btn.innerText = "Mengirim...";
             btn.disabled = true;
-        
+
             const formData = new FormData(this);
-        
-            // Saat nge-post data, form ini ga bawa "kehadiran", otomatis masuk BukuTamu
+
             fetch(SCRIPT_URL, { method: 'POST', body: formData })
-                    .then(res => res.json())
-                    .then(data => {
-                        this.reset();
-                        btn.innerText = "Kirim Pesan";
-                        btn.disabled = false;
-                        loadWishes(); 
-                    })
-                    .catch(err => {
-                        alert("Gagal kirim, coba lagi.");
-                        btn.innerText = "Kirim Pesan";
-                        btn.disabled = false;
-                    });
-            });
-            
-            loadWishes();
+                .then(res => res.json())
+                .then(data => {
+                    this.reset();
+                    btn.innerText = "Kirim Pesan";
+                    btn.disabled = false;
+                    
+                    showToast(); // <-- MUNCULIN POP-UP
+                    loadWishes(); 
+                })
+                .catch(err => {
+                    alert("Gagal kirim, coba lagi.");
+                    btn.innerText = "Kirim Pesan";
+                    btn.disabled = false;
+                });
+        });
+
+        loadWishes();
     </script>
 </body>
 </html>
