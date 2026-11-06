@@ -168,29 +168,32 @@
 
     <script>
         // --- JAVASCRIPT ---
-        const SCRIPT_URL = 'SCRIPT_URL_KAMU_DISINI'; // <-- GANTI PAKAI LINK APPS SCRIPT!
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxIt8TDLHoa7AfQTyEyJ4zzRJy-JPPDCXqAuDDEuUDv5AO_OlEaEKqOSsFiiWuE-tVryg/exec'; // <-- GANTI PAKAI LINK APPS SCRIPT!
+        
         let currentSlide = 0;
         let slideInterval;
-
+        
         function loadWishes() {
-            fetch(SCRIPT_URL)
+            // Tambahin "?sheet=bukutamu" di ujung link biar dia panggil tab BukuTamu
+            fetch(SCRIPT_URL + "?sheet=bukutamu")
                 .then(res => res.json())
-                .then(data => {
+                .then(response => {
+                    const data = response.data; // Ambil datanya
                     const box = document.getElementById('slideshowBox');
                     box.innerHTML = ''; 
-
+        
                     if (data.length === 0) {
                         box.innerHTML = '<p style="color:#888; position:absolute; top:50%; left:50%; transform:translate(-50%, -50%);">Jadilah yang pertama memberi ucapan!</p>';
                         return;
                     }
-
+        
                     data.forEach((item, index) => {
                         let div = document.createElement('div');
                         div.className = index === 0 ? 'slide active' : 'slide';
                         div.innerHTML = `<h4>${item.nama}</h4><p>"${item.ucapan}"</p>`;
                         box.appendChild(div);
                     });
-
+        
                     clearInterval(slideInterval);
                     if (data.length > 1) {
                         slideInterval = setInterval(showNextSlide, 4000);
@@ -198,40 +201,41 @@
                 })
                 .catch(err => console.log('Error:', err));
         }
-
+        
         function showNextSlide() {
             const slides = document.querySelectorAll('.slide');
             if (slides.length === 0) return;
-
+        
             slides[currentSlide].classList.remove('active');
             currentSlide = (currentSlide + 1) % slides.length;
             slides[currentSlide].classList.add('active');
         }
-
+        
         document.getElementById('wishForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const btn = document.getElementById('btnSubmit');
             btn.innerText = "Mengirim...";
             btn.disabled = true;
-
+        
             const formData = new FormData(this);
-
+        
+            // Saat nge-post data, form ini ga bawa "kehadiran", otomatis masuk BukuTamu
             fetch(SCRIPT_URL, { method: 'POST', body: formData })
-                .then(res => res.json())
-                .then(data => {
-                    this.reset();
-                    btn.innerText = "Kirim Pesan";
-                    btn.disabled = false;
-                    loadWishes(); 
-                })
-                .catch(err => {
-                    alert("Gagal kirim, coba lagi.");
-                    btn.innerText = "Kirim Pesan";
-                    btn.disabled = false;
-                });
-        });
-
-        loadWishes();
+                    .then(res => res.json())
+                    .then(data => {
+                        this.reset();
+                        btn.innerText = "Kirim Pesan";
+                        btn.disabled = false;
+                        loadWishes(); 
+                    })
+                    .catch(err => {
+                        alert("Gagal kirim, coba lagi.");
+                        btn.innerText = "Kirim Pesan";
+                        btn.disabled = false;
+                    });
+            });
+            
+            loadWishes();
     </script>
 </body>
 </html>
